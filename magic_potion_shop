@@ -1,0 +1,49 @@
+# Create a dictionary of potions and their ingredients
+potions = {
+    "Invisibility Potion": ["Moonstone", "Dragon scale", "Fairy dust"],
+    "Flying Potion": ["Phoenix feather", "Troll tooth", "Mermaid scale"],
+    "Healing Potion": ["Unicorn horn", "Elf hair", "Golden apple"]
+}
+
+# Display the list of potions using a for loop
+print("Welcome to the magic potion shop!")
+print("Here are the potions you can choose from:")
+for potion in potions:
+    print(potion)
+
+# Ask the user to choose a potion
+choice = input("Which potion do you want to buy? ")
+
+# Check if the choice is valid
+if choice in potions:
+    # Display the ingredients required for that potion
+    print(f"You have chosen the {choice}.")
+    print(f"You will need the following ingredients:")
+    for ingredient in potions[choice]:
+        print(ingredient)
+
+    # Use a while loop to let the user buy each ingredient one by one
+    print("Let's start shopping!")
+    index = 0 # Initialize an index variable to track the current ingredient
+    while index < len(potions[choice]):
+        # Ask the user if they want to buy the next ingredient
+        answer = input(f"Do you want to buy {potions[choice][index]}? (y/n) ")
+        # If yes, print a confirmation message and increment the index
+        if answer == "y":
+            print(f"You have bought {potions[choice][index]}.")
+            index += 1
+        # If no, print a goodbye message and break the loop
+        elif answer == "n":
+            print("You have decided to stop shopping.")
+            break
+        # If invalid input, print an error message and repeat the question
+        else:
+            print("Invalid input. Please enter y or n.")
+
+    # Print a success message when all ingredients are purchased
+    if index == len(potions[choice]):
+        print(f"Congratulations! You have bought all the ingredients for the {choice}.")
+else:
+    # Print an error message if the choice is not valid
+    print("Invalid choice. Please choose a potion from the list.")
+
