@@ -1,35 +1,39 @@
+// Get the elements
+const findOutMoreBtn = document.getElementById("findOutMoreBtn");
+const emailFormPopup = document.getElementById("emailFormPopup");
+const closePopup = document.getElementById("closePopup");
 
-const input = document.getElementById("input");
-const priority = document.getElementById("priority");
-const listsContainer = document.getElementById("lists-container");
-
-function addTask(){
-    const task = input.value
-    if (task.trim() === "") {
-        return;
-    }
-    const taskPriority = priority.value;
-    const taskItem = document.createElement("li");
-    const taskText = document.createElement("span");
-    taskText.classList.add("task-text")
-
-    const checkbox = document.createElement("input");
-    checkbox.classList.add("form-check-input")
-    checkbox.type = "checkbox";
-
-    taskText.textContent = task;
-    taskItem.appendChild(checkbox);
-    taskItem.appendChild(taskText);
-    const taskList = document.getElementById("task-list-" + taskPriority);
-
-    taskList.appendChild(taskItem);
-    input.value = "";
-}
-
-listsContainer.addEventListener("click", function(e){
-    if (e.target.tagName === "INPUT" && e.target.type === "checkbox"){
-        const listItem = e.target.parentNode;
-        const taskList = listItem.parentNode;
-        taskList.removechild(listItem)
-    }
+// Event listeners for opening and closing the popup
+findOutMoreBtn.addEventListener("click", function() {
+    emailFormPopup.style.display = "block";
 });
+
+closePopup.addEventListener("click", function() {
+    emailFormPopup.style.display = "none";
+});
+
+let emailForm = document.getElementById("emailForm");
+let emailInput = document.getElementById("email");
+let successAlert = document.createElement("div");
+
+successAlert.className = "alert alert-success";
+successAlert.textContent = "Thank you! Please check your email: ";
+successAlert.style.display = "none";
+
+emailForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const email = emailInput.value;
+    console.log("Email:", email);
+    successAlert.textContent += email
+
+    // Display the success alert
+    emailForm.style.display = "none";
+    const findOutMoreBtn = document.getElementById("findOutMoreBtn");
+    console.log(findOutMoreBtn.nextSibling)
+    findOutMoreBtn.parentNode.insertBefore(successAlert, findOutMoreBtn.nextSibling);
+    successAlert.style.display = "block";
+    emailFormPopup.style.display = "none";
+});
+
+emailForm.appendChild(successAlert);
