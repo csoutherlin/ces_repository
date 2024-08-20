@@ -10,7 +10,7 @@
 #exercise 1
 a = 10 - 3
 b = 2**3 #2 by the power of 3 = 2x2x2
-c = a ==b #== -> compare two values
+c = a == b #== -> compare two values
 print(f"exercise 1, answer: {c}")
 
 #execise 2
@@ -37,3 +37,4 @@ v = 15 / 3
 w = 3**2 - 3
 x = v != w # != -> not equal
 print(f"exercise 5, answer: {x}")
+
